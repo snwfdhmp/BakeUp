@@ -1,0 +1,33 @@
+#!/bin/bash    
+#This is a simple improved backup script
+
+if [ -z "$1" ]; then 
+              echo "usage: bakeup <file or directory>"
+              echo ""
+              echo "examples : bakeup document.txt"
+              echo "           bakeup ~/pictures"
+              exit
+          fi
+
+echo "Starting bakeup for $1"
+
+OF="$CONFIG_BAKEUP_DIR/$1_$(date +%d-%m-%Y-%H:%M).bakeup.tgz" #setting output file (OF) to the right destination
+
+echo "The backup will be stored in $OF."
+echo "Bakeup running ..."
+
+tar -cZf $OF $1 #compressing $1 into $OF
+
+echo "Bakeup : finished without any error"
+
+
+
+
+#	TODO:
+#	- Store bakeup directory path in a config file
+#	- Ability to change bakeup dir
+#	- Create dir if it doesnt exist
+#	- Log backup into log file
+#	- Permit to list all existing bakeup
+#	
+#	
